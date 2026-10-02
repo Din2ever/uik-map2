@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карта УИК Новосибирской области</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><span class="dot"></span> Карта УИК Новосибирской области</div>
+  <div class="stats" id="stats">—</div>
+</header>
+
+<div class="controls">
+  <input id="search" type="search" placeholder="Поиск: № УИК, адрес, ТИК…" autocomplete="off">
+  <div id="search-results" class="search-results" hidden></div>
+  <select id="tik-filter"><option value="">Все ТИК</option></select>
+  <label class="chk"><input type="checkbox" id="only-with-results"> Только с результатами</label>
+  <label class="chk"><input type="checkbox" id="only-kprf"> Только где лидер — КПРФ</label>
+  <label class="chk"><input type="checkbox" id="only-anomaly"> Только аномалии</label>
+  <label class="chk"><input type="checkbox" id="kprf-third"> КПРФ на 3-м месте и ниже</label>
+  <button id="reset-btn">Показать все</button>
+</div>
+
+<div id="map"></div>
+
+<div class="legend">
+  <div><span class="sym point-anomaly"></span> Аномалия (ЕР &gt; 80%)</div>
+  <div><span class="sym point-kprf"></span> Большинство у КПРФ</div>
+  <div><span class="sym point"></span> Большинство у другой партии</div>
+  <div><span class="sym point-nodata"></span> Нет данных</div>
+</div>
+
+<div id="card" class="card" hidden>
+  <button class="card-close" id="card-close">×</button>
+  <div class="card-inner" id="card-inner"></div>
+</div>
+
+<div id="toast"></div>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+:root{
+  --panel:#fff; --text:#0f172a; --muted:#64748b;
+  --border:#e2e8f0; --accent:#2563eb; --accent-soft:#dbeafe;
+  --uik:#2563eb; --tik:#dc2626;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--text);background:#f1f5f9;overflow:hidden}
+button{font-family:inherit}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:10px 14px;background:var(--panel);
+  border-bottom:1px solid var(--border);position:relative;z-index:5}
+.brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:14px}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 0 4px var(--accent-soft)}
+.stats{font-size:12px;color:var(--muted);white-space:nowrap}
+.stats b{color:var(--text)}
+
+.controls{display:flex;flex-wrap:wrap;gap:8px;padding:10px 14px;
+  background:var(--panel);border-bottom:1px solid var(--border);
+  position:relative;z-index:4}
+.controls input[type=search],.controls select{
+  height:36px;padding:0 10px;border:1px solid var(--border);
+  border-radius:8px;font-size:14px;background:#fff;color:var(--text);outline:none}
+.controls input[type=search]{flex:1 1 220px;min-width:160px}
+.controls input[type=search]:focus,.controls select:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.controls select{flex:0 1 240px}
+.chk{display:inline-flex;align-items:center;gap:6px;font-size:13px;
+  color:var(--muted);user-select:none;padding:0 4px}
+.controls button{height:36px;padding:0 14px;border:1px solid var(--border);
+  border-radius:8px;background:#fff;color:var(--text);font-size:14px;cursor:pointer}
+.controls button:hover{background:#f8fafc}
+
+.search-results{position:absolute;top:100%;left:14px;right:14px;margin-top:4px;
+  max-height:340px;overflow:auto;background:#fff;border:1px solid var(--border);
+  border-radius:8px;box-shadow:0 8px 20px rgba(15,23,42,.1);z-index:10}
+.search-results .item{padding:8px 12px;cursor:pointer;
+  border-bottom:1px solid var(--border);font-size:13px}
+.search-results .item:last-child{border-bottom:none}
+.search-results .item:hover{background:#f8fafc}
+.search-results .item .num{font-weight:600;color:var(--accent)}
+.search-results .item .sub{color:var(--muted);font-size:12px}
+.search-results .empty{padding:10px 12px;color:var(--muted);font-size:13px}
+
+#map{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  top:104px;
+  background:#eef2f7;
+  z-index:1;
+}
+@media (max-width:760px){#map{top:150px}}
+
+.legend{position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.95);
+  border:1px solid var(--border);border-radius:10px;padding:8px 12px;
+  font-size:12px;z-index:3;box-shadow:0 4px 12px rgba(15,23,42,.08)}
+.legend div{display:flex;align-items:center;gap:6px;line-height:1.6}
+.legend .sym{width:13px;height:13px;display:inline-block}
+.legend .sym.point{background:var(--uik);border-radius:50%;
+  border:2px solid #fff;box-shadow:0 0 0 1px var(--uik)}
+.legend .sym.tik{background:var(--tik);
+  clip-path:polygon(50% 0,100% 100%,0 100%)}
+.legend .sym.cluster{background:#94a3b8;border-radius:50%}
+.legend .sym.point-kprf{
+  background:#dc2626; border-radius:50%;
+  border:2px solid #fff; box-shadow:0 0 0 1px #dc2626;
+}
+.legend .sym.point-nodata{
+  background:#94a3b8; border-radius:50%;
+  border:2px solid #fff; box-shadow:0 0 0 1px #94a3b8;
+}
+.legend .sym.point-anomaly{
+  background:#000; border-radius:50%;
+  border:2px solid #fff; box-shadow:0 0 0 1px #000;
+}
+
+.card{position:absolute;top:116px;right:12px;width:440px;
+  max-width:calc(100vw - 24px);max-height:calc(100vh - 140px);overflow:auto;
+  background:#fff;border:1px solid var(--border);border-radius:14px;
+  box-shadow:0 12px 32px rgba(15,23,42,.18);z-index:6}
+@media (max-width:760px){.card{top:auto;bottom:0;right:0;left:0;width:auto;
+  max-height:70vh;border-radius:14px 14px 0 0}}
+.card-close{position:absolute;top:8px;right:8px;width:32px;height:32px;
+  border-radius:50%;border:1px solid var(--border);background:#fff;
+  font-size:18px;line-height:1;cursor:pointer;z-index:2}
+.card-close:hover{background:#f8fafc}
+.card-inner{padding:18px 18px 20px}
+.card-inner h2{margin:0 0 6px;font-size:17px;padding-right:36px}
+.card-inner .meta{font-size:12px;color:var(--muted);margin-bottom:12px;
+  word-break:break-word}
+.card-inner .meta div{margin-bottom:3px}
+.card-inner .uik-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.card-inner .uik-tabs button{padding:5px 11px;border-radius:999px;
+  border:1px solid var(--border);background:#fff;font-size:12px;cursor:pointer}
+.card-inner .uik-tabs button.active{background:var(--accent);color:#fff;
+  border-color:var(--accent)}
+.card-inner .results-title{font-weight:600;font-size:13px;margin:12px 0 6px}
+.card-inner .results-title .warn{color:#b45309;font-weight:400;font-size:12px}
+.card-inner table.results{width:100%;border-collapse:collapse;font-size:13px;
+  margin-top:6px}
+.card-inner table.results th,.card-inner table.results td{
+  padding:5px 6px;border-bottom:1px solid var(--border);
+  text-align:left;vertical-align:middle}
+.card-inner table.results th{font-weight:600;font-size:12px;color:var(--muted)}
+.card-inner table.results td.num{text-align:right;white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.card-inner table.results td.pct{text-align:right;white-space:nowrap;width:70px;
+  font-variant-numeric:tabular-nums}
+.card-inner .bar{margin-top:2px;height:6px;background:#eef2f7;border-radius:3px;
+  overflow:hidden}
+.card-inner .bar > i{display:block;height:100%;background:var(--accent);
+  border-radius:3px}
+.card-inner .empty{color:var(--muted);font-size:13px;padding:8px 0}
+.card-inner .voters{font-size:12px;color:var(--muted);margin-top:10px}
+
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
+  background:#0f172a;color:#fff;padding:10px 16px;border-radius:10px;
+  font-size:13px;z-index:200;opacity:0;pointer-events:none;
+  transition:opacity .2s}
+#toast.show{opacity:1}
